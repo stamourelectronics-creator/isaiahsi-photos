@@ -1,0 +1,51 @@
+{
+  "name": "isaiahsi-photos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Isaiahsi Photos and ICode for Windows",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "build:windows": "electron-builder --win nsis --x64",
+    "check": "node --check app.js && node --check icode.js && node --check desktop/main.cjs && node --check desktop/preload.cjs"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.isaiahsi.photos",
+    "productName": "Isaiahsi Photos",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "desktop/**",
+      "index.html",
+      "app.js",
+      "config.js",
+      "styles.css",
+      "icode.html",
+      "icode.css",
+      "icode.js",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Isaiahsi-Photos-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
